@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guy on set</title>
+<meta name="description" content="Stills and motion for brands, restaurants and production sets around Dallas–Fort Worth.">
+<meta property="og:title" content="Guy on set">
+<meta property="og:description" content="Stills and motion around Dallas–Fort Worth.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cellipse cx='16' cy='16' rx='11' ry='9' fill='none' stroke='%23FF4536' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+/* Layout: one frame per screen, alternating sides, black like a lightbox with the lights off. Contact-sheet edge numbers in amber, one grease-pencil circle in red. */
+:root {
+  --bg: #000000;
+  --ink: #f3f2ed;
+  --muted: #9a998f;
+  --marker: #ff4536;
+  --edge: #d99a3a;
+  --rule: #2a2a27;
+  --tone: #141413;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --wide: "wdth" 125;
+  --cond: "wdth" 72;
+  --chrome: 132px;           /* edge number + caption + breathing room around each frame */
+  --max: 1600px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-size: 17px; line-height: 1.5;
+  font-variation-settings: "wdth" 100; -webkit-font-smoothing: antialiased;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+::selection { background: var(--marker); color: #fff; }
+:focus-visible { outline: 2px solid var(--marker); outline-offset: 3px; }
+a { color: inherit; }
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: clamp(0px, 3vw, 48px); }
+
+/* ---------- top ---------- */
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: max(18px, env(safe-area-inset-top, 0px)) 18px; font-size: 15px; }
+.top b { font-weight: 800; font-variation-settings: var(--wide); }
+.top nav { display: flex; gap: clamp(14px, 2.4vw, 30px); }
+.top nav a { text-decoration: none; color: var(--muted); }
+.top nav a:hover { color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: clamp(36px, 7vw, 96px) clamp(56px, 9vw, 120px); }
+.wordmark {
+  margin: 0; font-weight: 800; font-variation-settings: var(--wide);
+  font-size: clamp(46px, 13.4vw, 236px); line-height: .86; letter-spacing: -0.035em;
+}
+.hero-row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 28px clamp(24px, 6vw, 96px); margin-top: clamp(28px, 4vw, 52px); align-items: end; }
+.statement { margin: 0; max-width: 28ch; font-size: clamp(21px, 2.4vw, 32px); line-height: 1.22; letter-spacing: -0.012em; text-wrap: balance; }
+.side { display: grid; gap: 4px; justify-items: start; font-size: 16px; }
+.side p { margin: 0; }
+.side .muted { color: var(--muted); }
+.circled { position: relative; display: inline-block; font-weight: 700; padding: 2px 4px; margin-bottom: 6px; }
+@media (max-width: 760px) { .hero-row { grid-template-columns: 1fr; } }
+
+/* grease-pencil loop */
+.loop { position: absolute; inset: -40% -10%; width: 120%; height: 180%; pointer-events: none; overflow: visible; }
+.loop path { fill: none; stroke: var(--marker); stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 2; stroke-dashoffset: 1.05; transition: stroke-dashoffset .7s cubic-bezier(.5, 0, .2, 1); }
+.drawn .loop path { stroke-dashoffset: 0; }
+
+/* ---------- sections ---------- */
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-top: 1px solid var(--rule); padding-top: 18px; margin-bottom: clamp(36px, 6vw, 72px); }
+.sec-head h2 { margin: 0; font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(34px, 5vw, 72px); line-height: .95; letter-spacing: -0.03em; }
+.sec-head span { color: var(--muted); font-size: 15px; }
+
+.reel { list-style: none; margin: 0; padding: 0 0 clamp(96px, 14vh, 180px); display: grid; gap: clamp(72px, 14vh, 160px); }
+.reel > li { display: flex; }
+@media (min-width: 900px) { .reel > li:nth-child(even) { justify-content: flex-end; } }
+
+/* Each frame is as large as the screen allows: full width, capped so the whole frame plus its caption fits in one viewport. */
+.shot { margin: 0; width: min(100%, calc((100svh - var(--chrome)) * var(--r))); }
+@supports not (height: 100svh) { .shot { width: min(100%, calc((100vh - var(--chrome)) * var(--r))); } }
+.edge { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--edge); font-size: 12px; font-weight: 600; font-variation-settings: var(--cond); letter-spacing: .03em; font-variant-numeric: tabular-nums; }
+.frame { position: relative; aspect-ratio: var(--r); max-width: 100%; background: var(--tone); overflow: hidden; }
+.frame img, .frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.shot figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; margin-top: 12px; font-size: 15px; line-height: 1.35; }
+.shot figcaption b { font-weight: 700; }
+.shot figcaption span { color: var(--muted); }
+.sound { position: absolute; right: 12px; bottom: 12px; z-index: 2; background: rgba(0,0,0,.6); color: #fff; border: 0; padding: 6px 10px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.sound:hover { background: var(--marker); }
+
+/* ---------- contact ---------- */
+.contact { padding-bottom: clamp(80px, 12vw, 160px); }
+.contact h2 { margin: 0 0 clamp(28px, 4vw, 48px); font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(40px, 8vw, 128px); line-height: .9; letter-spacing: -0.035em; max-width: 10ch; text-wrap: balance; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 32px clamp(24px, 6vw, 96px); align-items: end; }
+@media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+.big { display: block; width: fit-content; max-width: 100%; font-size: clamp(22px, 3vw, 40px); font-weight: 700; letter-spacing: -0.015em; text-decoration-thickness: 2px; text-underline-offset: 6px; overflow-wrap: anywhere; margin-bottom: 10px; }
+.big:hover { color: var(--marker); }
+.offer { margin: 0; color: var(--muted); max-width: 34ch; }
+.offer b { color: var(--ink); font-weight: 700; }
+
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 22px max(22px, env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .loop path { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <b>Guy on set</b>
+    <nav aria-label="Sections">
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" aria-labelledby="wm">
+    <h1 class="wordmark" id="wm">Guy on set</h1>
+    <div class="hero-row">
+      <p class="statement">Stills and motion for brands, restaurants and production sets around Dallas–Fort Worth.</p>
+      <div class="side">
+        <p class="circled" id="avail">Booking December and January</p>
+        <p class="muted">Oak Cliff, Dallas</p>
+        <p><a href="mailto:hello@guyonset.com">hello@guyonset.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="sec-head"><span>Contact</span><span></span></div>
+    <h2 id="contact-h">Let's make something</h2>
+    <div class="contact-grid">
+      <div>
+        <a class="big" href="mailto:hello@guyonset.com">hello@guyonset.com</a>
+        <a class="big" href="https://instagram.com/gyjcbs" target="_blank" rel="noopener">@gyjcbs</a>
+      </div>
+      <p class="offer"><b>Stills, social video, drone and set support.</b> Usually shot fast and light, often on iPhone, delivered while the post still matters.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Guy on set</span>
+    <span>Oak Cliff, Dallas</span>
+    <span id="year">© 2026</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.getElementById("year").textContent = "© " + new Date().getFullYear();
+
+  // One hand-drawn circle around the availability line.
+  var el = document.getElementById("avail");
+  var W = 100 * (el.offsetWidth / Math.max(el.offsetHeight, 1)) * 0.667, s = 21;
+  function r() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+  var start = -2.2 + r() * 0.5, sweep = Math.PI * 2 + 0.5, pts = [];
+  for (var i = 0; i <= 32; i++) {
+    var t = i / 32, a = start + sweep * t, dr = 1 + (t - 0.5) * 0.08, wob = 1 + Math.sin(a * 2 + 3) * 0.03;
+    pts.push([W / 2 + Math.cos(a) * W * 0.47 * dr * wob, 50 + Math.sin(a) * 44 * dr / wob]);
+  }
+  var d = "M" + pts[0][0].toFixed(2) + " " + pts[0][1].toFixed(2);
+  for (i = 1; i < pts.length - 1; i++) d += " Q" + pts[i][0].toFixed(2) + " " + pts[i][1].toFixed(2) + " " + ((pts[i][0] + pts[i + 1][0]) / 2).toFixed(2) + " " + ((pts[i][1] + pts[i + 1][1]) / 2).toFixed(2);
+  var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg"), p = document.createElementNS(NS, "path");
+  svg.setAttribute("class", "loop"); svg.setAttribute("viewBox", "0 0 " + W.toFixed(2) + " 100"); svg.setAttribute("preserveAspectRatio", "none"); svg.setAttribute("aria-hidden", "true");
+  p.setAttribute("d", d); p.setAttribute("pathLength", "1"); svg.appendChild(p); el.appendChild(svg);
+  setTimeout(function () { el.classList.add("drawn"); }, reduce ? 0 : 600);
+
+})();
+</script>
+</body>
+</html>
