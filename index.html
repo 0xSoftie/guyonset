@@ -6,6 +6,7 @@
 <title>Guy on set</title>
 <meta name="description" content="Stills and motion for brands, restaurants and production sets around Dallas–Fort Worth.">
 <meta property="og:title" content="Guy on set">
+<meta property="og:image" content="https://guyonset.com/media/stills/01.jpg">
 <meta property="og:description" content="Stills and motion around Dallas–Fort Worth.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cellipse cx='16' cy='16' rx='11' ry='9' fill='none' stroke='%23FF4536' stroke-width='3'/%3E%3C/svg%3E">
@@ -115,6 +116,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
   <header class="top">
     <b>Guy on set</b>
     <nav aria-label="Sections">
+      <a href="#stills">Stills</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -129,6 +131,31 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
         <p><a href="mailto:hello@guyonset.com">hello@guyonset.com</a></p>
       </div>
     </div>
+  </section>
+
+  <section id="stills" aria-labelledby="stills-h">
+    <div class="sec-head"><h2 id="stills-h">Stills</h2><span id="stills-count"></span></div>
+    <ol class="reel">
+      <li><figure class="shot" style="--r: 0.8">
+        <div class="edge"><span>▸ 01</span><span>4:5</span></div>
+        <div class="frame"><img src="media/stills/01.jpg" alt="Acura headlight close-up in black and white" width="1920" height="2400" loading="lazy" decoding="async"></div>
+      </figure></li>
+
+      <li><figure class="shot" style="--r: 0.8">
+        <div class="edge"><span>▸ 02</span><span>4:5</span></div>
+        <div class="frame"><img src="media/stills/02.jpg" alt="Acura wheel hub and logo in black and white" width="1920" height="2400" loading="lazy" decoding="async"></div>
+      </figure></li>
+
+      <li><figure class="shot" style="--r: 0.8">
+        <div class="edge"><span>▸ 03</span><span>4:5</span></div>
+        <div class="frame"><img src="media/stills/03.jpg" alt="Acura steering wheel in black and white" width="1920" height="2400" loading="lazy" decoding="async"></div>
+      </figure></li>
+
+      <li><figure class="shot" style="--r: 0.5625">
+        <div class="edge"><span>▸ 04</span><span>9:16</span></div>
+        <div class="frame"><img src="media/stills/04.jpg" alt="Acura wheel and tire in black and white" width="1349" height="2400" loading="lazy" decoding="async"></div>
+      </figure></li>
+    </ol>
   </section>
 
   <section class="contact" id="contact" aria-labelledby="contact-h">
@@ -154,6 +181,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.getElementById("year").textContent = "© " + new Date().getFullYear();
+  document.getElementById("stills-count").textContent = document.querySelectorAll("#stills .shot").length + " frames";
 
   // One hand-drawn circle around the availability line.
   var el = document.getElementById("avail");
