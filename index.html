@@ -86,8 +86,8 @@ a { color: inherit; }
 .edge { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--edge); font-size: 12px; font-weight: 600; font-variation-settings: var(--cond); letter-spacing: .03em; font-variant-numeric: tabular-nums; }
 .frame { position: relative; aspect-ratio: var(--r); max-width: 100%; background: var(--tone); overflow: hidden; }
 .frame img, .frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-/* Vertical cuts: three 9:16 loops side by side under the main loop, drone in the middle. */
-.pair { display: flex; justify-content: center; gap: clamp(10px, 1.4vw, 18px); margin-top: clamp(40px, 6vw, 72px); }
+/* Social: three 9:16 loops side by side in their own section below the main loop, drone in the middle. */
+.pair { display: flex; justify-content: center; gap: clamp(10px, 1.4vw, 18px); }
 .pair .shot { margin: 0; flex: 0 1 auto; width: min(calc((100% - 2 * clamp(10px, 1.4vw, 18px)) / 3), calc((100svh - var(--chrome)) * var(--r))); }
 @supports not (height: 100svh) { .pair .shot { width: min(calc((100% - 2 * clamp(10px, 1.4vw, 18px)) / 3), calc((100vh - var(--chrome)) * var(--r))); } }
 .shot figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; margin-top: 12px; font-size: 15px; line-height: 1.35; }
@@ -161,6 +161,10 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
     <figure class="shot" style="--r: 1.778">
       <div class="frame"><video src="media/motion/01.mp4" poster="media/motion/01.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Acura Integra Type S details in a showroom"></video></div>
     </figure>
+  </section>
+
+  <section id="social" class="motion-wrap" aria-labelledby="social-h">
+    <div class="divider"><h2 id="social-h" class="vh">Social</h2></div>
     <div class="pair">
       <figure class="shot" style="--r: 0.5625">
         <div class="frame"><video src="media/motion/02.mp4" poster="media/motion/02.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Black Corvette in an Acura showroom"></video></div>
@@ -241,7 +245,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
 
   // Loops play only while on screen. Reduced-motion visitors get standard controls instead.
   (function () {
-    var vids = document.querySelectorAll("#motion video");
+    var vids = document.querySelectorAll("#motion video, #social video");
     vids.forEach(function (v) { v.muted = true; });
     if (reduce) { vids.forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); v.controls = true; }); return; }
     if ("IntersectionObserver" in window) {
