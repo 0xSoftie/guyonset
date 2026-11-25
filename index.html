@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
 <style>
-/* Layout: one frame per screen, alternating sides, black like a lightbox with the lights off. Contact-sheet edge numbers in amber, one grease-pencil circle in red. */
+/* Layout: motion first, then stills as a contact-sheet grid, black like a lightbox with the lights off. Contact-sheet edge numbers in amber, one grease-pencil circle in red. */
 :root {
   --bg: #000000;
   --ink: #f3f2ed;
@@ -76,21 +76,37 @@ a { color: inherit; }
 .sec-head h2 { margin: 0; font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(24px, 2.5vw, 36px); line-height: .95; letter-spacing: -0.03em; }
 .sec-head span { color: var(--muted); font-size: 15px; }
 
-.reel { list-style: none; margin: 0; padding: 0 0 clamp(96px, 14vh, 180px); display: grid; gap: clamp(72px, 14vh, 160px); }
-.reel > li { display: flex; }
-@media (min-width: 900px) { .reel > li:nth-child(even) { justify-content: flex-end; } }
-
-/* Each frame is as large as the screen allows: full width, capped so the whole frame plus its caption fits in one viewport. */
-.shot { margin: 0; width: min(100%, calc((100svh - var(--chrome)) * var(--r))); }
-@supports not (height: 100svh) { .shot { width: min(100%, calc((100vh - var(--chrome)) * var(--r))); } }
+/* Motion: one centered loop, as large as the screen allows. */
+.motion-wrap { padding-bottom: clamp(72px, 10vw, 140px); }
+.shot { margin: 0 auto; width: min(100%, 1200px, calc((100svh - var(--chrome)) * var(--r))); }
+@supports not (height: 100svh) { .shot { width: min(100%, 1200px, calc((100vh - var(--chrome)) * var(--r))); } }
 .edge { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--edge); font-size: 12px; font-weight: 600; font-variation-settings: var(--cond); letter-spacing: .03em; font-variant-numeric: tabular-nums; }
 .frame { position: relative; aspect-ratio: var(--r); max-width: 100%; background: var(--tone); overflow: hidden; }
 .frame img, .frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .shot figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; margin-top: 12px; font-size: 15px; line-height: 1.35; }
 .shot figcaption b { font-weight: 700; }
 .shot figcaption span { color: var(--muted); }
-.sound { position: absolute; right: 12px; bottom: 12px; z-index: 2; background: rgba(0,0,0,.6); color: #fff; border: 0; padding: 6px 10px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
-.sound:hover { background: var(--marker); }
+
+/* Stills: a contact sheet. Two rows of four fit one screen on desktop; tap a frame to see it whole. */
+.sheet { list-style: none; margin: 0 auto; padding: 0 0 clamp(72px, 10vw, 140px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 18px); }
+@media (min-width: 900px) { .sheet { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: max(720px, calc(1.6 * (100svh - 210px) + 54px)); } }
+.sheet li { margin: 0; }
+.sheet .edge { margin-bottom: 6px; }
+.tile { display: block; width: 100%; padding: 0; border: 0; background: var(--tone); cursor: zoom-in; aspect-ratio: 4 / 5; overflow: hidden; }
+.tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .2s; }
+.tile:hover img { opacity: .82; }
+
+/* Lightbox */
+.lb { border: 0; padding: 0; margin: 0; width: 100vw; max-width: 100vw; height: 100vh; max-height: 100vh; background: rgba(0,0,0,.94); color: var(--ink); }
+.lb::backdrop { background: rgba(0,0,0,.94); }
+.lb[open] { display: grid; place-items: center; }
+.lb img { max-width: calc(100vw - 32px); max-height: calc(100svh - 96px); width: auto; height: auto; display: block; }
+.lb button { position: absolute; background: none; border: 0; color: var(--ink); font: inherit; font-size: 15px; font-weight: 700; padding: 14px 16px; cursor: pointer; }
+.lb button:hover { color: var(--marker); }
+.lb .x { top: max(8px, env(safe-area-inset-top, 0px)); right: 8px; }
+.lb .prev { left: 4px; top: 50%; transform: translateY(-50%); font-size: 28px; }
+.lb .next { right: 4px; top: 50%; transform: translateY(-50%); font-size: 28px; }
+.lb .n { position: absolute; bottom: max(14px, env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); color: var(--edge); font-size: 12px; font-weight: 600; font-variation-settings: var(--cond); letter-spacing: .03em; }
 
 /* ---------- contact ---------- */
 .contact { padding-bottom: clamp(80px, 12vw, 160px); }
@@ -116,8 +132,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
   <header class="top">
     <b>Guy on set</b>
     <nav aria-label="Sections">
-      <a href="#stills">Stills</a>
       <a href="#motion">Motion</a>
+      <a href="#stills">Stills</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -134,60 +150,35 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
     </div>
   </section>
 
+  <section id="motion" class="motion-wrap" aria-labelledby="motion-h">
+    <div class="sec-head"><h2 id="motion-h">Motion</h2><span id="motion-count"></span></div>
+    <figure class="shot" style="--r: 1.778">
+      <div class="edge"><span>▸ M1</span><span>16:9 loop</span></div>
+      <div class="frame"><video src="media/motion/01.mp4" poster="media/motion/01.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Acura Integra Type S details in a showroom"></video></div>
+    </figure>
+  </section>
+
   <section id="stills" aria-labelledby="stills-h">
     <div class="sec-head"><h2 id="stills-h">Stills</h2><span id="stills-count"></span></div>
-    <ol class="reel">
-      <li><figure class="shot" style="--r: 0.8">
-        <div class="edge"><span>▸ 01</span><span>4:5</span></div>
-        <div class="frame"><img src="media/stills/01.jpg" alt="Blue Acura headlight and front bumper" width="1024" height="1281" loading="lazy" decoding="async"></div>
-      </figure></li>
-
-      <li><figure class="shot" style="--r: 0.8">
-        <div class="edge"><span>▸ 02</span><span>4:5</span></div>
-        <div class="frame"><img src="media/stills/02.jpg" alt="Red leather Acura Type S seat in a showroom" width="1024" height="1280" loading="lazy" decoding="async"></div>
-      </figure></li>
-
-      <li><figure class="shot" style="--r: 0.8">
-        <div class="edge"><span>▸ 03</span><span>4:5</span></div>
-        <div class="frame"><img src="media/stills/03.jpg" alt="Acura wheel hub and logo in black and white" width="1920" height="2400" loading="lazy" decoding="async"></div>
-      </figure></li>
-
-      <li><figure class="shot" style="--r: 0.8">
-        <div class="edge"><span>▸ 04</span><span>4:5</span></div>
-        <div class="frame"><img src="media/stills/04.jpg" alt="Engine start button lit against black trim" width="1024" height="1280" loading="lazy" decoding="async"></div>
-      </figure></li>
-
-      <li><figure class="shot" style="--r: 0.8">
-        <div class="edge"><span>▸ 05</span><span>4:5</span></div>
-        <div class="frame"><img src="media/stills/05.jpg" alt="Hand on the gear selector of an Acura center console" width="1024" height="1280" loading="lazy" decoding="async"></div>
-      </figure></li>
-
-      <li><figure class="shot" style="--r: 0.5625">
-        <div class="edge"><span>▸ 06</span><span>9:16</span></div>
-        <div class="frame"><img src="media/stills/06.jpg" alt="Acura wheel and tire in black and white" width="1349" height="2400" loading="lazy" decoding="async"></div>
-      </figure></li>
-
-      <li><figure class="shot" style="--r: 0.8">
-        <div class="edge"><span>▸ 07</span><span>4:5</span></div>
-        <div class="frame"><img src="media/stills/07.jpg" alt="Type S badge and red taillight on a blue Acura" width="1024" height="1280" loading="lazy" decoding="async"></div>
-      </figure></li>
-
-      <li><figure class="shot" style="--r: 0.8">
-        <div class="edge"><span>▸ 08</span><span>4:5</span></div>
-        <div class="frame"><img src="media/stills/08.jpg" alt="Acura steering wheel backlit by a sunburst" width="1024" height="1280" loading="lazy" decoding="async"></div>
-      </figure></li>
+    <ol class="sheet">
+      <li><div class="edge"><span>▸ 01</span></div><button class="tile" type="button" data-full="media/stills/01.jpg" aria-label="View frame 01 larger"><img src="media/stills/01-sm.jpg" alt="Blue Acura headlight and front bumper" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 02</span></div><button class="tile" type="button" data-full="media/stills/02.jpg" aria-label="View frame 02 larger"><img src="media/stills/02-sm.jpg" alt="Red leather Acura Type S seat in a showroom" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 03</span></div><button class="tile" type="button" data-full="media/stills/03.jpg" aria-label="View frame 03 larger"><img src="media/stills/03-sm.jpg" alt="Acura wheel hub and logo in black and white" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 04</span></div><button class="tile" type="button" data-full="media/stills/04.jpg" aria-label="View frame 04 larger"><img src="media/stills/04-sm.jpg" alt="Engine start button lit against black trim" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 05</span></div><button class="tile" type="button" data-full="media/stills/05.jpg" aria-label="View frame 05 larger"><img src="media/stills/05-sm.jpg" alt="Hand on the gear selector of an Acura center console" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 06</span></div><button class="tile" type="button" data-full="media/stills/06.jpg" aria-label="View frame 06 larger"><img src="media/stills/06-sm.jpg" alt="Acura wheel and tire in black and white" width="800" height="1423" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 07</span></div><button class="tile" type="button" data-full="media/stills/07.jpg" aria-label="View frame 07 larger"><img src="media/stills/07-sm.jpg" alt="Type S badge and red taillight on a blue Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 08</span></div><button class="tile" type="button" data-full="media/stills/08.jpg" aria-label="View frame 08 larger"><img src="media/stills/08-sm.jpg" alt="Acura steering wheel backlit by a sunburst" width="800" height="1000" loading="lazy" decoding="async"></button></li>
     </ol>
   </section>
 
-  <section id="motion" aria-labelledby="motion-h">
-    <div class="sec-head"><h2 id="motion-h">Motion</h2><span id="motion-count"></span></div>
-    <ol class="reel">
-      <li><figure class="shot" style="--r: 1.778">
-        <div class="edge"><span>▸ M1</span><span>16:9 loop</span></div>
-        <div class="frame"><video src="media/motion/01.mp4" poster="media/motion/01.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Acura Integra Type S details in a showroom"></video></div>
-      </figure></li>
-    </ol>
-  </section>
+  <dialog class="lb" id="lb" aria-label="Still, enlarged">
+    <img id="lb-img" alt="">
+    <button class="x" type="button" id="lb-x">Close</button>
+    <button class="prev" type="button" id="lb-prev" aria-label="Previous frame">‹</button>
+    <button class="next" type="button" id="lb-next" aria-label="Next frame">›</button>
+    <span class="n" id="lb-n"></span>
+  </dialog>
 
   <section class="contact" id="contact" aria-labelledby="contact-h">
     <div class="sec-head"><span>Contact</span><span></span></div>
@@ -212,9 +203,28 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.getElementById("year").textContent = "© " + new Date().getFullYear();
-  document.getElementById("stills-count").textContent = document.querySelectorAll("#stills .shot").length + " frames";
+  document.getElementById("stills-count").textContent = document.querySelectorAll("#stills .tile").length + " frames";
   var nm = document.querySelectorAll("#motion .shot").length;
   document.getElementById("motion-count").textContent = nm + (nm === 1 ? " loop" : " loops");
+
+  // Lightbox: tap a still to see it whole; arrows, swipe-free buttons, Esc or a tap outside closes.
+  (function () {
+    var lb = document.getElementById("lb"), im = document.getElementById("lb-img"), num = document.getElementById("lb-n");
+    var tiles = Array.prototype.slice.call(document.querySelectorAll("#stills .tile")), cur = 0;
+    if (!lb.showModal) return;
+    function show(k) {
+      cur = (k + tiles.length) % tiles.length;
+      var t = tiles[cur], small = t.querySelector("img");
+      im.src = t.getAttribute("data-full"); im.alt = small.alt;
+      num.textContent = String(cur + 1).padStart(2, "0") + " / " + String(tiles.length).padStart(2, "0");
+    }
+    tiles.forEach(function (t, k) { t.addEventListener("click", function () { show(k); lb.showModal(); }); });
+    document.getElementById("lb-x").addEventListener("click", function () { lb.close(); });
+    document.getElementById("lb-prev").addEventListener("click", function (e) { e.stopPropagation(); show(cur - 1); });
+    document.getElementById("lb-next").addEventListener("click", function (e) { e.stopPropagation(); show(cur + 1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+  })();
 
   // Loops play only while on screen. Reduced-motion visitors get standard controls instead.
   (function () {
