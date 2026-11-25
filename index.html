@@ -83,6 +83,10 @@ a { color: inherit; }
 .edge { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--edge); font-size: 12px; font-weight: 600; font-variation-settings: var(--cond); letter-spacing: .03em; font-variant-numeric: tabular-nums; }
 .frame { position: relative; aspect-ratio: var(--r); max-width: 100%; background: var(--tone); overflow: hidden; }
 .frame img, .frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Social cuts: two 9:16 loops side by side under the main loop. */
+.pair { display: flex; justify-content: center; gap: clamp(10px, 1.4vw, 18px); margin-top: clamp(40px, 6vw, 72px); }
+.pair .shot { margin: 0; flex: 0 1 auto; width: min(calc(50% - 9px), calc((100svh - var(--chrome)) * var(--r))); }
+@supports not (height: 100svh) { .pair .shot { width: min(calc(50% - 9px), calc((100vh - var(--chrome)) * var(--r))); } }
 .shot figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; margin-top: 12px; font-size: 15px; line-height: 1.35; }
 .shot figcaption b { font-weight: 700; }
 .shot figcaption span { color: var(--muted); }
@@ -156,6 +160,16 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
       <div class="edge"><span>▸ M1</span><span>16:9 loop</span></div>
       <div class="frame"><video src="media/motion/01.mp4" poster="media/motion/01.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Acura Integra Type S details in a showroom"></video></div>
     </figure>
+    <div class="pair">
+      <figure class="shot" style="--r: 0.5625">
+        <div class="edge"><span>▸ M2</span><span>9:16 loop</span></div>
+        <div class="frame"><video src="media/motion/02.mp4" poster="media/motion/02.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Black Corvette in an Acura showroom"></video></div>
+      </figure>
+      <figure class="shot" style="--r: 0.5625">
+        <div class="edge"><span>▸ M3</span><span>9:16 loop</span></div>
+        <div class="frame"><video src="media/motion/03.mp4" poster="media/motion/03.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Technicians working on Acuras in the service center"></video></div>
+      </figure>
+    </div>
   </section>
 
   <section id="stills" aria-labelledby="stills-h">
