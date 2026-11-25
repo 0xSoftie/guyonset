@@ -117,6 +117,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
     <b>Guy on set</b>
     <nav aria-label="Sections">
       <a href="#stills">Stills</a>
+      <a href="#motion">Motion</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -148,6 +149,16 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
     </ol>
   </section>
 
+  <section id="motion" aria-labelledby="motion-h">
+    <div class="sec-head"><h2 id="motion-h">Motion</h2><span id="motion-count"></span></div>
+    <ol class="reel">
+      <li><figure class="shot" style="--r: 1.778">
+        <div class="edge"><span>▸ M1</span><span>16:9 loop</span></div>
+        <div class="frame"><video src="media/motion/01.mp4" poster="media/motion/01.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Acura Integra Type S details in a showroom"></video></div>
+      </figure></li>
+    </ol>
+  </section>
+
   <section class="contact" id="contact" aria-labelledby="contact-h">
     <div class="sec-head"><span>Contact</span><span></span></div>
     <h2 id="contact-h">Let's make something</h2>
@@ -172,6 +183,21 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.getElementById("year").textContent = "© " + new Date().getFullYear();
   document.getElementById("stills-count").textContent = document.querySelectorAll("#stills .shot").length + " frames";
+  var nm = document.querySelectorAll("#motion .shot").length;
+  document.getElementById("motion-count").textContent = nm + (nm === 1 ? " loop" : " loops");
+
+  // Loops play only while on screen. Reduced-motion visitors get standard controls instead.
+  (function () {
+    var vids = document.querySelectorAll("#motion video");
+    vids.forEach(function (v) { v.muted = true; });
+    if (reduce) { vids.forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); v.controls = true; }); return; }
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { var pr = e.target.play(); if (pr && pr.catch) pr.catch(function () {}); } else e.target.pause(); });
+      }, { threshold: 0.25 });
+      vids.forEach(function (v) { io.observe(v); });
+    }
+  })();
 
   // One hand-drawn circle around the availability line.
   var el = document.getElementById("avail");
