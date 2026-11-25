@@ -91,9 +91,11 @@ a { color: inherit; }
 .shot figcaption b { font-weight: 700; }
 .shot figcaption span { color: var(--muted); }
 
-/* Stills: a contact sheet. Two rows of four fit one screen on desktop; tap a frame to see it whole. */
+/* Stills: a contact sheet. The lead frame takes a 2x2 block, the other twelve fill a tidy 4-across grid (2-across on phones); tap any frame to see it whole. */
 .sheet { list-style: none; margin: 0 auto; padding: 0 0 clamp(72px, 10vw, 140px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 18px); }
-@media (min-width: 900px) { .sheet { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: max(720px, calc(1.6 * (100svh - 260px) + 54px)); } }
+@media (min-width: 900px) { .sheet { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1120px; } }
+.sheet .lead { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; }
+.sheet .lead .tile { flex: 1; aspect-ratio: auto; }
 .sheet li { margin: 0; }
 .sheet .edge { margin-bottom: 6px; }
 .tile { display: block; width: 100%; padding: 0; border: 0; background: var(--tone); cursor: zoom-in; aspect-ratio: 4 / 5; overflow: hidden; }
@@ -175,14 +177,19 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
   <section id="stills" aria-labelledby="stills-h">
     <div class="sec-head"><h2 id="stills-h">Stills</h2><span id="stills-count"></span></div>
     <ol class="sheet">
-      <li><div class="edge"><span>▸ 01</span></div><button class="tile" type="button" data-full="media/stills/01.jpg" aria-label="View frame 01 larger"><img src="media/stills/01-sm.jpg" alt="Blue Acura headlight and front bumper" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li class="lead"><div class="edge"><span>▸ 01</span></div><button class="tile" type="button" data-full="media/stills/01.jpg" aria-label="View frame 01 larger"><img src="media/stills/01.jpg" alt="Blue Acura headlight and front bumper" width="1598" height="2000" loading="lazy" decoding="async"></button></li>
       <li><div class="edge"><span>▸ 02</span></div><button class="tile" type="button" data-full="media/stills/02.jpg" aria-label="View frame 02 larger"><img src="media/stills/02-sm.jpg" alt="Red leather Acura Type S seat in a showroom" width="800" height="1000" loading="lazy" decoding="async"></button></li>
       <li><div class="edge"><span>▸ 03</span></div><button class="tile" type="button" data-full="media/stills/03.jpg" aria-label="View frame 03 larger"><img src="media/stills/03-sm.jpg" alt="Acura wheel hub and logo in black and white" width="800" height="1000" loading="lazy" decoding="async"></button></li>
       <li><div class="edge"><span>▸ 04</span></div><button class="tile" type="button" data-full="media/stills/04.jpg" aria-label="View frame 04 larger"><img src="media/stills/04-sm.jpg" alt="Engine start button lit against black trim" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 05</span></div><button class="tile" type="button" data-full="media/stills/05.jpg" aria-label="View frame 05 larger"><img src="media/stills/05-sm.jpg" alt="Hand on the gear selector of an Acura center console" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 06</span></div><button class="tile" type="button" data-full="media/stills/06.jpg" aria-label="View frame 06 larger"><img src="media/stills/06-sm.jpg" alt="Acura wheel and tire in black and white" width="800" height="1423" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 07</span></div><button class="tile" type="button" data-full="media/stills/07.jpg" aria-label="View frame 07 larger"><img src="media/stills/07-sm.jpg" alt="Type S badge and red taillight on a blue Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 08</span></div><button class="tile" type="button" data-full="media/stills/08.jpg" aria-label="View frame 08 larger"><img src="media/stills/08-sm.jpg" alt="Acura steering wheel backlit by a sunburst" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 05</span></div><button class="tile" type="button" data-full="media/stills/05.jpg" aria-label="View frame 05 larger"><img src="media/stills/05-sm.jpg" alt="White Acura with a Hiley plate on the lot" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 06</span></div><button class="tile" type="button" data-full="media/stills/06.jpg" aria-label="View frame 06 larger"><img src="media/stills/06-sm.jpg" alt="Type S badge on a blue Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 07</span></div><button class="tile" type="button" data-full="media/stills/07.jpg" aria-label="View frame 07 larger"><img src="media/stills/07-sm.jpg" alt="Hand on the gear selector of an Acura center console" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 08</span></div><button class="tile" type="button" data-full="media/stills/08.jpg" aria-label="View frame 08 larger"><img src="media/stills/08-sm.jpg" alt="Red door panel and speaker inside an Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 09</span></div><button class="tile" type="button" data-full="media/stills/09.jpg" aria-label="View frame 09 larger"><img src="media/stills/09-sm.jpg" alt="Acura wheel and tire in black and white" width="800" height="1423" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 10</span></div><button class="tile" type="button" data-full="media/stills/10.jpg" aria-label="View frame 10 larger"><img src="media/stills/10-sm.jpg" alt="Acura wheel beside a grille on the showroom floor" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 11</span></div><button class="tile" type="button" data-full="media/stills/11.jpg" aria-label="View frame 11 larger"><img src="media/stills/11-sm.jpg" alt="Acura digital gauge cluster and steering column" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 12</span></div><button class="tile" type="button" data-full="media/stills/12.jpg" aria-label="View frame 12 larger"><img src="media/stills/12-sm.jpg" alt="Acura steering wheel backlit by a sunburst" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><div class="edge"><span>▸ 13</span></div><button class="tile" type="button" data-full="media/stills/13.jpg" aria-label="View frame 13 larger"><img src="media/stills/13-sm.jpg" alt="Type S badge and red taillight on a blue Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
     </ol>
   </section>
 
