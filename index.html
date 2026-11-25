@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
 <style>
-/* Layout: motion first, then stills as a contact-sheet grid, black like a lightbox with the lights off. Contact-sheet edge numbers in amber, one grease-pencil circle in red. */
+/* Layout: motion first, then stills as a contact-sheet grid, black like a lightbox with the lights off. Work sections are split by thin rules with no visible labels; one grease-pencil circle in red. */
 :root {
   --bg: #000000;
   --ink: #f3f2ed;
@@ -26,7 +26,7 @@
   --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --wide: "wdth" 125;
   --cond: "wdth" 72;
-  --chrome: 132px;           /* edge number + caption + breathing room around each frame */
+  --chrome: 104px;           /* header + breathing room around each frame */
   --max: 1600px;
   color-scheme: dark;
 }
@@ -75,6 +75,9 @@ a { color: inherit; }
 .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-top: 1px solid var(--rule); padding-top: 18px; margin-bottom: clamp(36px, 6vw, 72px); }
 .sec-head h2 { margin: 0; font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(24px, 2.5vw, 36px); line-height: .95; letter-spacing: -0.03em; }
 .sec-head span { color: var(--muted); font-size: 15px; }
+/* Work sections: a bare rule as the divider; the heading stays for screen readers and search. */
+.divider { border-top: 1px solid var(--rule); margin-bottom: clamp(48px, 7vw, 96px); }
+.vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
 
 /* Motion: one centered loop, as large as the screen allows. */
 .motion-wrap { padding-bottom: clamp(72px, 10vw, 140px); }
@@ -97,7 +100,6 @@ a { color: inherit; }
 .sheet .lead { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; }
 .sheet .lead .tile { flex: 1; aspect-ratio: auto; }
 .sheet li { margin: 0; }
-.sheet .edge { margin-bottom: 6px; }
 .tile { display: block; width: 100%; padding: 0; border: 0; background: var(--tone); cursor: zoom-in; aspect-ratio: 4 / 5; overflow: hidden; }
 .tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .2s; }
 .tile:hover img { opacity: .82; }
@@ -157,39 +159,36 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
   </section>
 
   <section id="motion" class="motion-wrap" aria-labelledby="motion-h">
-    <div class="sec-head"><h2 id="motion-h">Motion</h2><span id="motion-count"></span></div>
+    <div class="divider"><h2 id="motion-h" class="vh">Motion</h2></div>
     <figure class="shot" style="--r: 1.778">
-      <div class="edge"><span>▸ M1</span><span>16:9 loop</span></div>
       <div class="frame"><video src="media/motion/01.mp4" poster="media/motion/01.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Acura Integra Type S details in a showroom"></video></div>
     </figure>
     <div class="pair">
       <figure class="shot" style="--r: 0.5625">
-        <div class="edge"><span>▸ M2</span><span>9:16 loop</span></div>
         <div class="frame"><video src="media/motion/02.mp4" poster="media/motion/02.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Black Corvette in an Acura showroom"></video></div>
       </figure>
       <figure class="shot" style="--r: 0.5625">
-        <div class="edge"><span>▸ M3</span><span>9:16 loop</span></div>
         <div class="frame"><video src="media/motion/03.mp4" poster="media/motion/03.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Technicians working on Acuras in the service center"></video></div>
       </figure>
     </div>
   </section>
 
   <section id="stills" aria-labelledby="stills-h">
-    <div class="sec-head"><h2 id="stills-h">Stills</h2><span id="stills-count"></span></div>
+    <div class="divider"><h2 id="stills-h" class="vh">Stills</h2></div>
     <ol class="sheet">
-      <li class="lead"><div class="edge"><span>▸ 01</span></div><button class="tile" type="button" data-full="media/stills/01.jpg" aria-label="View frame 01 larger"><img src="media/stills/01.jpg" alt="Blue Acura headlight and front bumper" width="1598" height="2000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 02</span></div><button class="tile" type="button" data-full="media/stills/02.jpg" aria-label="View frame 02 larger"><img src="media/stills/02-sm.jpg" alt="Red leather Acura Type S seat in a showroom" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 03</span></div><button class="tile" type="button" data-full="media/stills/03.jpg" aria-label="View frame 03 larger"><img src="media/stills/03-sm.jpg" alt="Acura wheel hub and logo in black and white" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 04</span></div><button class="tile" type="button" data-full="media/stills/04.jpg" aria-label="View frame 04 larger"><img src="media/stills/04-sm.jpg" alt="Engine start button lit against black trim" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 05</span></div><button class="tile" type="button" data-full="media/stills/05.jpg" aria-label="View frame 05 larger"><img src="media/stills/05-sm.jpg" alt="White Acura with a Hiley plate on the lot" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 06</span></div><button class="tile" type="button" data-full="media/stills/06.jpg" aria-label="View frame 06 larger"><img src="media/stills/06-sm.jpg" alt="Type S badge on a blue Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 07</span></div><button class="tile" type="button" data-full="media/stills/07.jpg" aria-label="View frame 07 larger"><img src="media/stills/07-sm.jpg" alt="Hand on the gear selector of an Acura center console" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 08</span></div><button class="tile" type="button" data-full="media/stills/08.jpg" aria-label="View frame 08 larger"><img src="media/stills/08-sm.jpg" alt="Red door panel and speaker inside an Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 09</span></div><button class="tile" type="button" data-full="media/stills/09.jpg" aria-label="View frame 09 larger"><img src="media/stills/09-sm.jpg" alt="Acura wheel and tire in black and white" width="800" height="1423" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 10</span></div><button class="tile" type="button" data-full="media/stills/10.jpg" aria-label="View frame 10 larger"><img src="media/stills/10-sm.jpg" alt="Acura wheel beside a grille on the showroom floor" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 11</span></div><button class="tile" type="button" data-full="media/stills/11.jpg" aria-label="View frame 11 larger"><img src="media/stills/11-sm.jpg" alt="Acura digital gauge cluster and steering column" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 12</span></div><button class="tile" type="button" data-full="media/stills/12.jpg" aria-label="View frame 12 larger"><img src="media/stills/12-sm.jpg" alt="Acura steering wheel backlit by a sunburst" width="800" height="1000" loading="lazy" decoding="async"></button></li>
-      <li><div class="edge"><span>▸ 13</span></div><button class="tile" type="button" data-full="media/stills/13.jpg" aria-label="View frame 13 larger"><img src="media/stills/13-sm.jpg" alt="Type S badge and red taillight on a blue Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li class="lead"><button class="tile" type="button" data-full="media/stills/01.jpg" aria-label="View frame 01 larger"><img src="media/stills/01.jpg" alt="Blue Acura headlight and front bumper" width="1598" height="2000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/02.jpg" aria-label="View frame 02 larger"><img src="media/stills/02-sm.jpg" alt="Red leather Acura Type S seat in a showroom" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/03.jpg" aria-label="View frame 03 larger"><img src="media/stills/03-sm.jpg" alt="Acura wheel hub and logo in black and white" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/04.jpg" aria-label="View frame 04 larger"><img src="media/stills/04-sm.jpg" alt="Engine start button lit against black trim" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/05.jpg" aria-label="View frame 05 larger"><img src="media/stills/05-sm.jpg" alt="White Acura with a Hiley plate on the lot" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/06.jpg" aria-label="View frame 06 larger"><img src="media/stills/06-sm.jpg" alt="Type S badge on a blue Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/07.jpg" aria-label="View frame 07 larger"><img src="media/stills/07-sm.jpg" alt="Hand on the gear selector of an Acura center console" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/08.jpg" aria-label="View frame 08 larger"><img src="media/stills/08-sm.jpg" alt="Red door panel and speaker inside an Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/09.jpg" aria-label="View frame 09 larger"><img src="media/stills/09-sm.jpg" alt="Acura wheel and tire in black and white" width="800" height="1423" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/10.jpg" aria-label="View frame 10 larger"><img src="media/stills/10-sm.jpg" alt="Acura wheel beside a grille on the showroom floor" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/11.jpg" aria-label="View frame 11 larger"><img src="media/stills/11-sm.jpg" alt="Acura digital gauge cluster and steering column" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/12.jpg" aria-label="View frame 12 larger"><img src="media/stills/12-sm.jpg" alt="Acura steering wheel backlit by a sunburst" width="800" height="1000" loading="lazy" decoding="async"></button></li>
+      <li><button class="tile" type="button" data-full="media/stills/13.jpg" aria-label="View frame 13 larger"><img src="media/stills/13-sm.jpg" alt="Type S badge and red taillight on a blue Acura" width="800" height="1000" loading="lazy" decoding="async"></button></li>
     </ol>
   </section>
 
@@ -224,9 +223,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.getElementById("year").textContent = "© " + new Date().getFullYear();
-  document.getElementById("stills-count").textContent = document.querySelectorAll("#stills .tile").length + " frames";
-  var nm = document.querySelectorAll("#motion .shot").length;
-  document.getElementById("motion-count").textContent = nm + (nm === 1 ? " loop" : " loops");
 
   // Lightbox: tap a still to see it whole; arrows, swipe-free buttons, Esc or a tap outside closes.
   (function () {
