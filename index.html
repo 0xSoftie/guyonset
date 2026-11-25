@@ -87,6 +87,7 @@ a { color: inherit; }
 .frame { position: relative; aspect-ratio: var(--r); max-width: 100%; background: var(--tone); overflow: hidden; }
 .frame img, .frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 /* Social: three 9:16 loops side by side in their own section below the main loop, drone in the middle. */
+#motion .shot + .shot { margin-top: clamp(16px, 2vw, 28px); }
 .pair { display: flex; justify-content: center; gap: clamp(10px, 1.4vw, 18px); }
 .pair .shot { margin: 0; flex: 0 1 auto; width: min(calc((100% - 2 * clamp(10px, 1.4vw, 18px)) / 3), calc((100svh - var(--chrome)) * var(--r))); }
 @supports not (height: 100svh) { .pair .shot { width: min(calc((100% - 2 * clamp(10px, 1.4vw, 18px)) / 3), calc((100vh - var(--chrome)) * var(--r))); } }
@@ -160,6 +161,9 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
     <div class="divider"><h2 id="motion-h" class="vh">Motion</h2></div>
     <figure class="shot" style="--r: 1.778">
       <div class="frame"><video src="media/motion/01.mp4" poster="media/motion/01.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Acura Integra Type S details in a showroom"></video></div>
+    </figure>
+    <figure class="shot" style="--r: 1.778">
+      <div class="frame"><video src="media/motion/05.mp4" poster="media/motion/05.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Couples in a holiday jewelry campaign, on a rooftop and by a Christmas tree"></video></div>
     </figure>
   </section>
 
