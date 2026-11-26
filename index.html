@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Guy on set</title>
-<meta name="description" content="Stills and motion for brands, restaurants and production sets around Dallas–Fort Worth.">
+<meta name="description" content="I shoot photo and video for your social channels around Dallas and Fort Worth, and you keep every file.">
 <meta property="og:title" content="Guy on set">
 <meta property="og:image" content="https://guyonset.com/media/stills/01.jpg?v=8">
-<meta property="og:description" content="Stills and motion around Dallas–Fort Worth.">
+<meta property="og:description" content="I shoot photo and video for your social channels around Dallas and Fort Worth, and you keep every file.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cellipse cx='16' cy='16' rx='11' ry='9' fill='none' stroke='%23FF4536' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,18 +53,20 @@ a { color: inherit; }
 .top nav a:hover { color: var(--ink); }
 
 /* ---------- hero ---------- */
-.hero { padding-block: clamp(36px, 7vw, 96px) clamp(56px, 9vw, 120px); }
+.hero { padding-block: clamp(28px, 5vw, 72px) clamp(32px, 4vw, 56px); }
+#motion .divider { margin-bottom: clamp(24px, 3vw, 40px); }
 .wordmark {
   margin: 0; font-weight: 800; font-variation-settings: var(--wide);
   font-size: clamp(30px, 6.7vw, 118px); line-height: .86; letter-spacing: -0.035em;
 }
 .hero-row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 28px clamp(24px, 6vw, 96px); margin-top: clamp(28px, 4vw, 52px); align-items: end; }
-.statement { margin: 0; max-width: 28ch; font-size: clamp(21px, 2.4vw, 32px); line-height: 1.22; letter-spacing: -0.012em; text-wrap: balance; }
+.statement { margin: 0; max-width: 30ch; font-size: clamp(21px, 2.4vw, 32px); line-height: 1.22; letter-spacing: -0.012em; text-wrap: balance; }
 .side { display: grid; gap: 4px; justify-items: start; font-size: 16px; }
 .side p { margin: 0; }
 .side .muted { color: var(--muted); }
 .circled { position: relative; display: inline-block; font-weight: 700; padding: 2px 4px; margin-bottom: 6px; }
 @media (max-width: 760px) { .hero-row { grid-template-columns: 1fr; } }
+.headline { margin: 0; max-width: 17ch; font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(34px, 5.4vw, 88px); line-height: .92; letter-spacing: -0.035em; text-wrap: balance; }
 
 /* grease-pencil loop */
 .loop { position: absolute; inset: -40% -10%; width: 120%; height: 180%; pointer-events: none; overflow: visible; }
@@ -115,14 +117,31 @@ a { color: inherit; }
 .lb .next { right: 4px; top: 50%; transform: translateY(-50%); font-size: 28px; }
 .lb .n { position: absolute; bottom: max(14px, env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); color: var(--edge); font-size: 12px; font-weight: 600; font-variation-settings: var(--cond); letter-spacing: .03em; }
 
+/* Section copy: a headline and one muted line, set to the width of the work below it. */
+.copy { max-width: min(1200px, calc((100svh - var(--chrome)) * 1.778)); margin: 0 auto clamp(24px, 3vw, 40px); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 12px clamp(24px, 5vw, 80px); align-items: end; }
+.copy h2 { margin: 0; font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(24px, 3.2vw, 46px); line-height: .95; letter-spacing: -0.03em; text-wrap: balance; max-width: 16ch; }
+.copy p { margin: 0; color: var(--muted); max-width: 34ch; }
+@media (max-width: 760px) { .copy { grid-template-columns: 1fr; } }
+.pair { max-width: min(1200px, calc((100svh - var(--chrome)) * 1.778)); margin-inline: auto; }
+.pair .shot figcaption { justify-content: flex-start; font-size: 14px; color: var(--muted); letter-spacing: .02em; }
+
+/* How it works: three numbered steps across the width of the work. */
+.how { padding-bottom: clamp(72px, 10vw, 140px); }
+.steps { list-style: none; margin: 0 auto; padding: 0; max-width: min(1200px, calc((100svh - var(--chrome)) * 1.778)); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px clamp(24px, 4vw, 56px); }
+.steps li { border-top: 1px solid var(--rule); padding-top: 16px; }
+.steps b { display: block; color: var(--marker); font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(28px, 3vw, 44px); line-height: 1; margin-bottom: 12px; }
+.steps p { margin: 0; max-width: 30ch; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.4; }
+@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+#stills .copy { max-width: 1120px; }
+
 /* ---------- contact ---------- */
 .contact { padding-bottom: clamp(80px, 12vw, 160px); }
-.contact h2 { margin: 0 0 clamp(28px, 4vw, 48px); font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(26px, 4vw, 64px); line-height: .9; letter-spacing: -0.035em; max-width: 10ch; text-wrap: balance; }
+.contact h2 { margin: 0 0 clamp(28px, 4vw, 48px); font-weight: 800; font-variation-settings: var(--wide); font-size: clamp(26px, 4vw, 64px); line-height: .9; letter-spacing: -0.035em; max-width: 14ch; text-wrap: balance; }
 .contact-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 32px clamp(24px, 6vw, 96px); align-items: end; }
 @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
 .big { display: block; width: fit-content; max-width: 100%; font-size: clamp(22px, 3vw, 40px); font-weight: 700; letter-spacing: -0.015em; text-decoration-thickness: 2px; text-underline-offset: 6px; overflow-wrap: anywhere; margin-bottom: 10px; }
 .big:hover { color: var(--marker); }
-.offer { margin: 0; color: var(--muted); max-width: 34ch; }
+.offer { margin: 0; color: var(--muted); max-width: 34ch; font-size: clamp(17px, 1.4vw, 20px); }
 .offer b { color: var(--ink); font-weight: 700; }
 
 footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 22px max(22px, env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); }
@@ -139,51 +158,72 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
   <header class="top">
     <b>Guy on set</b>
     <nav aria-label="Sections">
-      <a href="#motion">Motion</a>
-      <a href="#stills">Stills</a>
-      <a href="#contact">Contact</a>
+      <a href="#motion">Work</a>
+      <a href="#how">How it works</a>
+      <a href="mailto:hello@guyonset.com">Contact</a>
     </nav>
   </header>
 
   <section class="hero" aria-labelledby="wm">
-    <h1 class="wordmark" id="wm">Guy on set</h1>
+    <h1 class="headline" id="wm">I'm Guy. I shoot photo and video for your socials.</h1>
     <div class="hero-row">
-      <p class="statement">Stills and motion for brands, restaurants and production sets around Dallas–Fort Worth.</p>
+      <p class="statement">You tell me what you need, or don't. I show up, shoot what looks good, and hand you a bank of posts you keep.</p>
       <div class="side">
         <p class="circled" id="avail">Booking December and January</p>
-        <p class="muted">Oak Cliff, Dallas</p>
+        <p class="muted">Brands, menus, products, drone</p>
+        <p class="muted">Dallas and Fort Worth</p>
         <p><a href="mailto:hello@guyonset.com">hello@guyonset.com</a></p>
       </div>
     </div>
   </section>
 
   <section id="motion" class="motion-wrap" aria-labelledby="motion-h">
-    <div class="divider"><h2 id="motion-h" class="vh">Motion</h2></div>
+    <div class="divider"></div>
+    <h2 id="motion-h" class="vh">Work</h2>
     <figure class="shot" style="--r: 1.778">
       <div class="frame"><video src="media/motion/01.mp4" poster="media/motion/01.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Acura Integra Type S details in a showroom"></video></div>
     </figure>
+  </section>
+
+  <section id="social" class="motion-wrap" aria-labelledby="social-h">
+    <div class="divider"></div>
+    <div class="copy">
+      <h2 id="social-h">One shoot, every side of your business.</h2>
+      <p>I cover the product, the place and the people, cut vertical and ready to post.</p>
+    </div>
+    <div class="pair">
+      <figure class="shot" style="--r: 0.5625">
+        <div class="frame"><video src="media/motion/02.mp4" poster="media/motion/02.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Black Corvette in an Acura showroom"></video></div>
+        <figcaption><b>Product</b></figcaption>
+      </figure>
+      <figure class="shot" style="--r: 0.5625">
+        <div class="frame"><video src="media/motion/04.mp4" poster="media/motion/04.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Drone view of the Hiley Acura dealership and lot"></video></div>
+        <figcaption><b>Location</b></figcaption>
+      </figure>
+      <figure class="shot" style="--r: 0.5625">
+        <div class="frame"><video src="media/motion/03.mp4" poster="media/motion/03.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Technicians working on Acuras in the service center"></video></div>
+        <figcaption><b>Service</b></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="bts" class="motion-wrap" aria-labelledby="bts-h">
+    <div class="divider"></div>
+    <div class="copy">
+      <h2 id="bts-h">Already booked a photographer? I'll shoot the social side.</h2>
+      <p>Vertical video shot alongside your stills, so the campaign has motion too.</p>
+    </div>
     <figure class="shot" style="--r: 1.778">
       <div class="frame"><video src="media/motion/05.mp4?v=9" poster="media/motion/05.jpg?v=9" muted loop playsinline autoplay preload="metadata" aria-label="Couples in a holiday jewelry campaign, on a rooftop and by a Christmas tree"></video></div>
     </figure>
   </section>
 
-  <section id="social" class="motion-wrap" aria-labelledby="social-h">
-    <div class="divider"><h2 id="social-h" class="vh">Social</h2></div>
-    <div class="pair">
-      <figure class="shot" style="--r: 0.5625">
-        <div class="frame"><video src="media/motion/02.mp4" poster="media/motion/02.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Black Corvette in an Acura showroom"></video></div>
-      </figure>
-      <figure class="shot" style="--r: 0.5625">
-        <div class="frame"><video src="media/motion/04.mp4" poster="media/motion/04.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Drone view of the Hiley Acura dealership and lot"></video></div>
-      </figure>
-      <figure class="shot" style="--r: 0.5625">
-        <div class="frame"><video src="media/motion/03.mp4" poster="media/motion/03.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Technicians working on Acuras in the service center"></video></div>
-      </figure>
-    </div>
-  </section>
-
   <section id="stills" aria-labelledby="stills-h">
-    <div class="divider"><h2 id="stills-h" class="vh">Stills</h2></div>
+    <div class="divider"></div>
+    <div class="copy">
+      <h2 id="stills-h">Photos too.</h2>
+      <p>Products, menus and spaces, edited and ready for your feed.</p>
+    </div>
     <ol class="sheet">
       <li><button class="tile" type="button" data-full="media/stills/01.jpg?v=8" aria-label="View frame 01 larger"><img src="media/stills/01-sm.jpg?v=8" alt="Blue Acura headlight and front bumper" width="800" height="1001" loading="lazy" decoding="async"></button></li>
       <li><button class="tile" type="button" data-full="media/stills/02.jpg?v=8" aria-label="View frame 02 larger"><img src="media/stills/02-sm.jpg?v=8" alt="Red leather Acura Type S seat in a showroom" width="800" height="1000" loading="lazy" decoding="async"></button></li>
@@ -204,15 +244,27 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
     <span class="n" id="lb-n"></span>
   </dialog>
 
+  <section id="how" class="how" aria-labelledby="how-h">
+    <div class="divider"></div>
+    <div class="copy">
+      <h2 id="how-h">Here's how it goes.</h2>
+    </div>
+    <ol class="steps">
+      <li><b>1</b><p>Tell me about your business. A shot list is welcome, not required.</p></li>
+      <li><b>2</b><p>I show up with a camera and shoot what looks good.</p></li>
+      <li><b>3</b><p>You get edited photos and videos ready to post. They're yours to keep.</p></li>
+    </ol>
+  </section>
+
   <section class="contact" id="contact" aria-labelledby="contact-h">
     <div class="sec-head"><span>Contact</span><span></span></div>
-    <h2 id="contact-h">Let's make something</h2>
+    <h2 id="contact-h">My inbox is always open.</h2>
     <div class="contact-grid">
       <div>
         <a class="big" href="mailto:hello@guyonset.com">hello@guyonset.com</a>
         <a class="big" href="https://instagram.com/gyjcbs" target="_blank" rel="noopener">@gyjcbs</a>
       </div>
-      <p class="offer"><b>Stills, social video, drone and set support.</b> Usually shot fast and light, often on iPhone, delivered while the post still matters.</p>
+      <p class="offer"><b>Got a shoot? Let's talk.</b> Just want to connect? Also great. If you think we could work together someday, I'd love to meet you.</p>
     </div>
   </section>
 
@@ -249,7 +301,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
 
   // Loops play only while on screen. Reduced-motion visitors get standard controls instead.
   (function () {
-    var vids = document.querySelectorAll("#motion video, #social video");
+    var vids = document.querySelectorAll("#motion video, #social video, #bts video");
     vids.forEach(function (v) { v.muted = true; });
     if (reduce) { vids.forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); v.controls = true; }); return; }
     if ("IntersectionObserver" in window) {
